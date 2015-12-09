@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IEHelper", "IE Helper\IEHelper.vcxproj", "{A0CB5FE5-C103-4DF8-93A9-77030DEC55B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chrome Helper", "Chrome Helper", "{1C135BFB-2F33-441E-A7E0-5E19EAF96AF0}"
+	ProjectSection(SolutionItems) = preProject
+		Chrome Helper\contentscript.js = Chrome Helper\contentscript.js
+		Chrome Helper\manifest.json = Chrome Helper\manifest.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Firefox Helper", "Firefox Helper", "{1D4C049C-F4FF-4595-B152-81590232253E}"
+	ProjectSection(SolutionItems) = preProject
+		Firefox Helper\main.js = Firefox Helper\main.js
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://fomasoft.com/tfs/mediacurator
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = IE\u0020Helper\\IEHelper.vcxproj
+		SccProjectName1 = IE\u0020Helper
+		SccLocalPath1 = IE\u0020Helper
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Internal|Win32 = Internal|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0CB5FE5-C103-4DF8-93A9-77030DEC55B3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A0CB5FE5-C103-4DF8-93A9-77030DEC55B3}.Debug|Win32.Build.0 = Debug|Win32
+		{A0CB5FE5-C103-4DF8-93A9-77030DEC55B3}.Internal|Win32.ActiveCfg = Internal|Win32
+		{A0CB5FE5-C103-4DF8-93A9-77030DEC55B3}.Internal|Win32.Build.0 = Internal|Win32
+		{A0CB5FE5-C103-4DF8-93A9-77030DEC55B3}.Release|Win32.ActiveCfg = Release|Win32
+		{A0CB5FE5-C103-4DF8-93A9-77030DEC55B3}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

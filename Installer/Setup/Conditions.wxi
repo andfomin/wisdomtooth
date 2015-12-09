@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <PropertyRef Id="NETFRAMEWORK40CLIENT" />
+  <!--<PropertyRef Id="WIX_ACCOUNT_LOCALSERVICE"/>-->
+
+  <Condition Message="This application works only with Windows Vista or Windows 7.">
+    <![CDATA[Installed OR (VersionNT >= 600 AND MsiNTProductType = 1)]]>
+  </Condition>
+  <Condition Message="Administrator rights needed.">
+    <![CDATA[Installed OR Privileged]]>
+  </Condition>
+  <Condition Message="This application requires Microsoft .NET Framework 4 Client Profile. Please go to http://go.microsoft.com/fwlink/?LinkId=181012, install the .NET Framework, then run this installer again" >
+    <![CDATA[Installed OR NETFRAMEWORK40CLIENT]]>
+  </Condition>
+  <!--<Condition Message="First uninstall the application.">
+      <![CDATA[NOT REINSTALLMODE]]>
+    </Condition>-->
+</Include>

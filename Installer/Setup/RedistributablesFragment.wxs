@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <?include Variables.wxi ?>
+
+  <Fragment>
+
+    <!-- SQL CE -->
+
+    <DirectoryRef Id="INSTALLDIR">
+      <Component Id="cmp92167893C4A70A154F72D6DA80CECEAA" Guid="{E1DF4D96-1878-4D2E-804D-CF9375312498}">
+        <File Id="filBD733973B2B00B6164DEB7924D04056B" KeyPath="yes" Source="$(var.SqlCePath)\System.Data.SqlServerCe.dll" />
+      </Component>
+    </DirectoryRef>
+
+    <!--<DirectoryRef Id="dir_amd64">
+      <Component Id="cmpB3A8789BE901D4F3789AF14A59A905CA" Guid="{ED1F59DC-A6AE-4365-BDC4-205FE5905494}">
+        <File Id="filE82EDEFEA97E7815F381093A02CD1C3A" KeyPath="yes" Source="$(var.SqlCePath)\amd64\sqlcecompact40.dll" />
+      </Component>
+      <Component Id="cmpD65FD3E4ACB5138E04B461B273935311" Guid="{BE25433C-2906-4629-9B0A-F4B616929A6B}">
+        <File Id="fil3294B3E6AC7435091D42E5BD13B13171" KeyPath="yes" Source="$(var.SqlCePath)\amd64\sqlceer40EN.dll" />
+      </Component>
+      <Component Id="cmp2C174C61C7D510053EA979F123AAB7A6" Guid="{A7AB356B-ED7B-468E-AF09-6630D0525272}">
+        <File Id="fil14AB47296758F4D6190C8E94810DCC39" KeyPath="yes" Source="$(var.SqlCePath)\amd64\sqlceme40.dll" />
+      </Component>
+      <Component Id="cmp19AC0C641CC43045976A69C4B0A45C98" Guid="{DB66CC19-6B9A-49E3-9CA1-C7E77FC120D1}">
+        <File Id="filDB876957FE9C64E5239BA0EF7B67E448" KeyPath="yes" Source="$(var.SqlCePath)\amd64\sqlceqp40.dll" />
+      </Component>
+      <Component Id="cmp9F4ECF849BF14355799255E252362058" Guid="{C9750DCA-6331-4FF3-A802-B699B686F842}">
+        <File Id="fil60D3F88B4BB630A89CD440EFA8A105D8" KeyPath="yes" Source="$(var.SqlCePath)\amd64\sqlcese40.dll" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="dir_amd64vc90">
+      <Component Id="cmp31C696C5A45FA8EBC65E3C166F85AC44" Guid="{2582DD11-8302-4B29-9E1A-E57AF27697D4}">
+        <File Id="fil924973C0A3DED7E2DFF5A6468C4A56B6" KeyPath="yes" Source="$(var.SqlCePath)\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
+      </Component>
+      <Component Id="cmp8580185511687C41E9362BBDE073DAC7" Guid="{0CBE1AD3-BAFA-4187-8ED6-48D364C2A1CC}">
+        <File Id="fil65B800183668D3E71AA840384A30FB58" KeyPath="yes" Source="$(var.SqlCePath)\amd64\Microsoft.VC90.CRT\msvcr90.dll" />
+      </Component>
+    </DirectoryRef>-->
+
+    <DirectoryRef Id="dir_x86">
+      <Component Id="cmpB66F7F93A186D0A256A5F62637C903B9" Guid="{48267CE1-60B6-468E-9A12-B282B306D233}">
+        <File Id="fil6D7CE764C24E49B061FD7AC0C5542D12" KeyPath="yes" Source="$(var.SqlCePath)\x86\sqlcecompact40.dll" />
+      </Component>
+      <Component Id="cmp78E11FAA7BEDBE73648191ADBC357A29" Guid="{B415D4DA-93C5-4A47-BA39-2563CD90B578}">
+        <File Id="fil8FD6D3CB5C1D1915EEA81859EC62BA30" KeyPath="yes" Source="$(var.SqlCePath)\x86\sqlceer40EN.dll" />
+      </Component>
+      <Component Id="cmp6477E7AC0C45B05063273B3A9C911989" Guid="{7CC9584A-3686-4D64-97E0-A04E22D7568E}">
+        <File Id="fil9F2627E96497F0912C675D733AED7E69" KeyPath="yes" Source="$(var.SqlCePath)\x86\sqlceme40.dll" />
+      </Component>
+      <Component Id="cmp38A95F268423940EA64CF3F15B4A4C85" Guid="{B01A47C5-C9E8-4DB1-BED8-7192940FE379}">
+        <File Id="fil879250E20C1A05065EE86DEE23979573" KeyPath="yes" Source="$(var.SqlCePath)\x86\sqlceqp40.dll" />
+      </Component>
+      <Component Id="cmp72057321C2E9672F0D0900E0C4C2B69C" Guid="{FCA09590-761C-4261-BE4B-1E3AF1D1ECC1}">
+        <File Id="filA183C62CA3A2DBFECFE5E43BF400FAE3" KeyPath="yes" Source="$(var.SqlCePath)\x86\sqlcese40.dll" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="dir_x86vc90">
+      <Component Id="cmpB88DC628E1505CCE23AD0FE223CC84E5" Guid="{29E18A8D-881A-4A41-98CF-1D176D3A85C8}">
+        <File Id="fil732637CC7782E289EB6E0ADDAE4F215B" KeyPath="yes" Source="$(var.SqlCePath)\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
+      </Component>
+      <Component Id="cmp11C20B2E3DA67A4C977402108A5F6632" Guid="{4B00A207-BC2D-4380-93CD-D0CACA682194}">
+        <File Id="fil5764B429097823D49E06DAB177F24CF5" KeyPath="yes" Source="$(var.SqlCePath)\x86\Microsoft.VC90.CRT\msvcr90.dll" />
+      </Component>
+    </DirectoryRef>
+
+    <!-- Redistributable VC++ DLLs for IE Helper  -->
+    <DirectoryRef Id="dir_IEHelper">
+      <Component Id="cmp_Atl100" Guid="{62331CE4-6C4E-42EA-A7D8-D1855959E4B3}">
+        <File Source="$(var.VCRedistPath)\atl100.dll" KeyPath="yes" />
+      </Component>
+      <!-- Release ships with msvcr100.dll, not msvcr100d.dll -->
+      <Component Id="cmp_Msvcr100" Guid="{6CDEA6F3-802D-41C6-B746-52C963B04345}">
+        <File Source="$(var.VCRedistPath)\msvcr100.dll" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <ComponentGroup Id="cmpgr_RedistSqlCe">
+      <ComponentRef Id="cmp92167893C4A70A154F72D6DA80CECEAA" />
+      <!--<ComponentRef Id="cmpB3A8789BE901D4F3789AF14A59A905CA" />
+      <ComponentRef Id="cmpD65FD3E4ACB5138E04B461B273935311" />
+      <ComponentRef Id="cmp2C174C61C7D510053EA979F123AAB7A6" />
+      <ComponentRef Id="cmp19AC0C641CC43045976A69C4B0A45C98" />
+      <ComponentRef Id="cmp9F4ECF849BF14355799255E252362058" />
+      <ComponentRef Id="cmp31C696C5A45FA8EBC65E3C166F85AC44" />
+      <ComponentRef Id="cmp8580185511687C41E9362BBDE073DAC7" />-->
+      <ComponentRef Id="cmpB66F7F93A186D0A256A5F62637C903B9" />
+      <ComponentRef Id="cmp78E11FAA7BEDBE73648191ADBC357A29" />
+      <ComponentRef Id="cmp6477E7AC0C45B05063273B3A9C911989" />
+      <ComponentRef Id="cmp38A95F268423940EA64CF3F15B4A4C85" />
+      <ComponentRef Id="cmp72057321C2E9672F0D0900E0C4C2B69C" />
+      <ComponentRef Id="cmpB88DC628E1505CCE23AD0FE223CC84E5" />
+      <ComponentRef Id="cmp11C20B2E3DA67A4C977402108A5F6632" />
+    </ComponentGroup>
+
+    <ComponentGroup Id="cmpgr_RedistVC">
+      <ComponentRef Id="cmp_Atl100" />
+      <ComponentRef Id="cmp_Msvcr100" />
+    </ComponentGroup>
+
+  </Fragment>
+</Wix>

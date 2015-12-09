@@ -1,0 +1,24 @@
+﻿<Activity mc1:Ignorable="sap" x:Class="MediaCurator.Controller.MainWorkflow" sap:VirtualizedContainerService.HintSize="640,805" mva:VisualBasic.Settings="Assembly references and imported namespaces for internal implementation" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:local="clr-namespace:MediaCurator.Controller" xmlns:mc1="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ms="clr-namespace:MediaCurator.SensorsIE;assembly=MediaCurator.SensorsIE" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=System" xmlns:s2="clr-namespace:System;assembly=System.Xml" xmlns:s3="clr-namespace:System;assembly=System.Core" xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Sequence sad:XamlDebuggerXmlReader.FileName="C:\Users\Andrey\Documents\Visual Studio 2010\Projects\WisdomTooth\Controller\MainWorkflow.xaml" sap:VirtualizedContainerService.HintSize="600,765">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg3:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Parallel sap:VirtualizedContainerService.HintSize="578,641">
+      <While DisplayName="Query Sensors" sap:VirtualizedContainerService.HintSize="464,595" Condition="True">
+        <Sequence sap:VirtualizedContainerService.HintSize="438,479">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <local:SystemLoadMonitor Timeout="{x:Null}" sap:VirtualizedContainerService.HintSize="218,22" />
+          <WriteLine sap:VirtualizedContainerService.HintSize="218,61" Text="[&quot;First &quot; &amp; DateTime.Now()]" />
+          <!--<InvokeMethod sap:VirtualizedContainerService.HintSize="218,130" MethodName="ReadCache" TargetType="ms:CacheReader" />-->
+          <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="218,22" />
+        </Sequence>
+      </While>
+    </Parallel>
+  </Sequence>
+</Activity>

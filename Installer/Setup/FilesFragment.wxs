@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" >
+
+  <?include Variables.wxi ?>
+
+  <Fragment>
+
+    <DirectoryRef Id="INSTALLDIR">
+      <!--<Component Id="cmp_BinPermissions" Guid="{E60D06B2-E9BD-4DCB-BFAB-628FFA5B4421}" KeyPath="yes">
+        <CreateFolder>
+          <util:PermissionEx User="Everyone" GenericExecute="yes" GenericRead="yes" />
+        </CreateFolder>
+      </Component>-->
+      <Component Id="cmp_MainExe" Guid="{4F55EB42-67A6-40A3-8467-42B64ED1F5CC}">
+        <File Id="fl_MainExe" Name="$(var.MainExeName)" Source="$(var.BinariesPath)\MediaCurator.exe"  KeyPath="yes" />
+        <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Run"
+               Name="$(var.ProductName)" Type="string" Value="[INSTALLDIR]$(var.MainExeName)" Action="write" />
+      </Component>
+      <Component Id="cmp_ControllerDll" Guid="{BD9F8B3C-1A8E-494C-94FC-CD2CD3093BE2}">
+        <File Source="$(var.BinariesPath)\MediaCurator.Controller.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="cmp_CommonDll" Guid="{4BA74A06-0D7A-4210-88B2-3452FC2B4349}">
+        <File Source="$(var.BinariesPath)\MediaCurator.Common.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="cmp_DataDll" Guid="{4AFAA77B-4E09-4104-A38D-322FF06DC12E}">
+        <File Source="$(var.BinariesPath)\MediaCurator.Data.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="cmp_ServerDll" Guid="{482D1BA6-A5C0-4DBC-AA47-C0A3F34E79A2}">
+        <File Source="$(var.BinariesPath)\MediaCurator.Server.dll" KeyPath="yes" />
+      </Component>
+      <!--<Component Id="cmp_RemoveBinDir" Guid="{A0CA8BF8-7FD4-499F-B438-4671FC7F793D}" KeyPath="yes">
+        <RemoveFile Id="PurgeBinDir" Name="*" On="uninstall" />
+        <RemoveFolder Id="RemoveBinDir" On="uninstall" />
+      </Component>-->
+      <!--<Component Id="cmp_AutorunKey" Guid="{CEF09827-5E5A-468F-8A57-86FF54EF2B7B}">
+        <RegistryValue Root="HKMU" Key="Software\Microsoft\Windows\CurrentVersion\Run"
+                       Name="Media Cutrator" Type="string" Value="[INSTALLDIR]MediaCurator.exe"
+                       KeyPath="yes" Action="write" />
+      </Component>-->
+    </DirectoryRef>
+
+    <DirectoryRef Id="dir_IEHelper">
+      <!--<Component Id="cmp_IEHelperPermissions" Guid="{8649494E-AF04-4362-99B0-69ADA0434DAD}" KeyPath="yes">
+        <CreateFolder>
+          <util:PermissionEx User="Everyone" GenericExecute="yes" GenericRead="yes" />
+        </CreateFolder>
+      </Component>-->
+      <Component Id="cmp_IEHelperDll" Guid="{6830BAFE-C4EE-445D-A77F-70D709C28113}">
+        <File Id="filA891FCE4F070A94E7816A9CE0E7530EF" KeyPath="yes" Source="$(var.IEHelperPath)\IEHelper.dll">
+          <TypeLib Id="{814DBEE1-E0C7-49E7-871C-ADA16B0C5694}" Description="IEHelperLib" HelpDirectory="dir_IEHelper" Language="0" MajorVersion="1" MinorVersion="1">
+            <Class Id="{CE574366-081D-4481-8761-81D814328AA8}" Context="InprocServer32" Description="$(var.ProductName) IE Helper" ThreadingModel="apartment" Version="1.1" Programmable="yes" />
+            <Interface Id="{F33D4DC0-E42D-4243-9D2C-282BC4D77BDA}" Name="IHelperObject" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+          </TypeLib>
+        </File>
+        <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{CE574366-081D-4481-8761-81D814328AA8}" Value="Media Curator IE Helper" Type="string" Action="write" />
+        <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{CE574366-081D-4481-8761-81D814328AA8}" Name="NoExplorer" Value="1" Type="integer" Action="write" />
+      </Component>
+    </DirectoryRef>
+
+    <!--Start Menu Shortcuts. Shortcut do not have KeyPath; so for proper uninstall, it have to be combined with a element which has KeyPath   -->
+    <DirectoryRef Id="dir_Shortcuts">
+      <Component Id="cmp_Shortcuts" Guid="{52CBB1F9-BB10-438A-A08E-C136C75C0DE0}">
+        <util:InternetShortcut Id="MediaCuratorShortcut" Name="$(var.ProductName)" Target="http://localhost/mediacurator/" Type="url" />
+        <!--<RemoveFolder Id="RemoveMyShortcutsDir" On="uninstall" />-->
+        <!-- A dummy entry. Needed for declaring KeyPath to remove shortcuts on uninstall. -->
+        <RegistryValue KeyPath="yes" Root="HKMU" Key="Software\$(var.ManufacturerShortName)\$(var.ProductName)"
+                       Name="Installed" Type="integer" Value="1" Action="write" />
+      </Component>
+    </DirectoryRef>
+
+    <!--<DirectoryRef Id="dir_Data">
+      <Component Id="cmp_DataPermissions" Guid="{8F78DA49-EE20-4966-ABAE-CEE77491468E}" KeyPath="yes">
+        <CreateFolder>
+          <util:PermissionEx User="LocalService" GenericRead="yes" GenericWrite="yes" />
+        </CreateFolder>
+      </Component>
+      <Component Id="cmp_RemoveDataFiles" Guid="{BF9A865A-2868-4F04-847F-46906282438B}" KeyPath="yes">
+        <RemoveFile Id="PurgeDataDir" Name="*" On="uninstall" />
+      </Component>
+    </DirectoryRef>-->
+
+    <ComponentGroup Id="cmpgr_Binaries">
+      <ComponentRef Id="cmp_MainExe" />
+      <ComponentRef Id="cmp_ControllerDll" />
+      <ComponentRef Id="cmp_CommonDll" />
+      <ComponentRef Id="cmp_DataDll" />
+      <ComponentRef Id="cmp_ServerDll" />
+      <ComponentRef Id="cmp_IEHelperDll" />
+    </ComponentGroup>
+
+    <ComponentGroup Id="cmpgr_Shortcuts">
+      <ComponentRef Id="cmp_Shortcuts" />
+    </ComponentGroup>
+
+  </Fragment>
+</Wix>
+

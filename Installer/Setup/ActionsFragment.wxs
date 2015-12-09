@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+
+  <?include Variables.wxi ?>
+
+  <Fragment>
+    <CustomAction Id="act_DeleteHttpReservation_Cmd" Property="act_DeleteHttpReservation" Execute="immediate"
+                  Value="&quot;[SystemFolder]netsh.exe&quot; http delete urlacl url=http://+:80/mediacurator/"/>
+    <!--<Property Id="DeleteHttpReservation" 
+              Value="&quot;[SystemFolder]netsh.exe&quot; http delete urlacl url=http://+:80/mediacurator/" />-->
+    <CustomAction Id="act_DeleteHttpReservation" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no"/>
+
+    <CustomAction Id="act_AddHttpReservation_Cmd" Property="act_AddHttpReservation" Execute="immediate"
+                Value="&quot;[SystemFolder]netsh.exe&quot; http add urlacl url=http://+:80/mediacurator/ sddl=D:(A;;GX;;;BU)"/>
+    <!--<Property Id="AddHttpReservation" 
+              Value="&quot;[SystemFolder]netsh.exe&quot; http add urlacl url=http://+:80/mediacurator/ sddl=D:(A;;GX;;;BU)" />-->
+    <CustomAction Id="act_AddHttpReservation" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="check" Impersonate="no"/>
+
+    <Property Id="WixShellExecTarget" Value="[#fl_MainExe]" />
+    <CustomAction Id="act_LaunchMainExe" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+
+    <!-- Consider the Fast User Swith case. There may be many instances running in different user sessions. -->
+    <!--<CustomAction Id="StopMainExe_Cmd" Property="StopMainExe" Execute="immediate"
+                  Value="&quot;[SystemFolder]taskkill.exe&quot; /im $(var.MainExeName)"/>
+    <CustomAction Id="StopMainExe" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="immediate" Return="ignore" Impersonate="yes"/>-->
+    <!-- This item is used by WixCloseApplications in InstallExecuteSequence -->
+    <util:CloseApplication Id="CloseMainExe" Target="$(var.MainExeName)" CloseMessage="yes" RebootPrompt="no" />
+
+    <!-- For unknown reason, setting direct directory reference to Value does not work -->
+    <CustomAction Id="act_SetRootDataDir" Property="REMOVEROOTDATADIR" Value="[CommonAppDataFolder]$(var.ManufacturerShortName)" />
+
+    <PropertyRef Id="NETFRAMEWORK40CLIENTINSTALLROOTDIR"/>
+
+    <DirectoryRef Id="INSTALLDIR">
+      <Component Id="cmp_RegisterEventSource" Guid="{BC315FFE-BCF7-4C31-8CBB-C0DF55146CA4}" KeyPath="yes">
+        <util:EventSource Log="Application" Name="$(var.ProductName)"
+        EventMessageFile="[NETFRAMEWORK40CLIENTINSTALLROOTDIR]EventLogMessages.dll" />
+      </Component>
+    </DirectoryRef>
+
+    <ComponentGroup Id="cmpgr_EventSource">
+      <ComponentRef Id="cmp_RegisterEventSource" />
+    </ComponentGroup>
+
+  </Fragment>
+</Wix>

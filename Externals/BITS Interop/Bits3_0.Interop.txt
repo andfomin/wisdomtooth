@@ -1,0 +1,21 @@
+C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Include\bits3_0.idl
+Copy the contents of the folder containing the IDL file to another location because the original folder is read-only.
+
+C:\Users\Andrey\Documents\Visual Studio 2010\Projects\ex01\ConsoleApplication2\ConsoleApplication2\Include>midl /tlb bits3_0.tlb bits3_0.idl
+
+C:\Users\Andrey\Documents\Visual Studio 2010\Projects\ex01\ConsoleApplication2\ConsoleApplication2\Include>tlbimp bits3_0.tlb /out:Bits3_0.Interop.dll /delaysign /publickey: "C:\Users\Andrey\Documents\MediaCurator\Client\Main\WisdomTooth\WisdomToothPublicKeyOnly.pk"
+
+TlbImp : warning TI3015 : At least one of the arguments for 'Bits3_0.Interop.IBa
+ckgroundCopyJob2.GetReplyData' cannot be marshaled by the runtime marshaler.  Su
+ch arguments will therefore be passed as a pointer and may require unsafe code t
+o manipulate.
+TlbImp : warning TI3015 : At least one of the arguments for 'Bits3_0.Interop.IBa
+ckgroundCopyJob3.GetReplyData' cannot be marshaled by the runtime marshaler.  Su
+ch arguments will therefore be passed as a pointer and may require unsafe code t
+o manipulate.
+TlbImp : warning TI3015 : At least one of the arguments for 'Bits3_0.Interop.IBa
+ckgroundCopyJob4.GetReplyData' cannot be marshaled by the runtime marshaler.  Su
+ch arguments will therefore be passed as a pointer and may require unsafe code t
+o manipulate.
+TlbImp : Type library imported to C:\Users\Andrey\Documents\Visual Studio 2010\P
+rojects\ex01\ConsoleApplication2\ConsoleApplication2\Include\Bits3_0.Interop.dll

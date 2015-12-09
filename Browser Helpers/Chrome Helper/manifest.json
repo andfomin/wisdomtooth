@@ -1,0 +1,14 @@
+{
+    "name": "Media Curator helper",
+    "version": "1.0.0",
+    "description": "Description goes here",
+    "permissions": [
+        "http://miner/mediacurator/helper/"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["http://*/*"],
+            "js": ["contentscript.js"]
+        }
+    ]
+}

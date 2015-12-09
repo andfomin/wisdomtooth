@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Update>
+  <New Url="http://www.fomin-family.com/download/1.1.1/MediaCurator.msi">
+    <Min Ver="10.1.1.0" Include="true"/>
+    <Max Ver="10.1.1.0" Include="true"/>
+  </New>
+</Update>

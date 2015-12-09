@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <?define ManufacturerName = "Dignicom Inc." ?>
+  <?define ManufacturerShortName = "Dignicom" ?>
+  <?define ProductName = "Media Curator" ?>
+  <?define MainExeName = "MediaCurator.exe" ?>
+  <?define WebSite = "http://www.mediacurator.com" ?>
+
+  <!-- For an major upgrade version, keep UpgradeCode the same, change ProductId and Version. -->
+  <!--  Upgrade code has to be the same for all updates. -->
+  <?define UpgradeCode1_1_1 = "586DEF32-4B75-4A39-B8ED-D149612C9C33" ?>
+  <!-- Different ProductId means it is a major upgrade. -->
+  <?define ProductId1_1_1 = "F427757F-75F8-4EBA-90AA-062ED95BFC25" ?>
+  <!-- Windows Installer only uses the first 3 parts of the version in upgrade scenarios. -->
+  <?define Version1_1_1 = "1.1.1" ?>
+
+  <?define VCRedistPath = "..\..\Externals\Microsoft.VC100.CRT" ?>
+  <?define SqlCePath = "..\..\Externals\SqlCe" ?>
+
+  <?ifdef Debug ?>
+  <?define IEHelperPath  = "..\..\Browser Helpers\IE Helper\Debug" ?>
+  <?define BinariesPath  = "..\..\WisdomTooth\Executables\MediaCurator\bin\Debug" ?>
+  <?else?>
+  <?define IEHelperPath  = "..\..\..\..\Binaries" ?>
+  <?define BinariesPath  = "..\..\..\..\Binaries" ?>
+  <?endif?>
+
+  <?define LicensePath1_1_1 = "..\..\Assets\License.rtf" ?>
+  <?define IconPath1_1_1 = "..\..\Assets\MediaCurator.ico" ?>
+
+</Include>

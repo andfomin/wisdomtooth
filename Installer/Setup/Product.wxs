@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+
+  <?include Variables.wxi ?>
+
+  <Product Id="$(var.ProductId1_1_1)" UpgradeCode="$(var.UpgradeCode1_1_1)" Version="$(var.Version1_1_1)"
+           Name="$(var.ProductName)" Manufacturer="$(var.ManufacturerName)" Language="1033">
+    <!-- Windows Installer 4.0 released with Windows Vista. We allow for installation on only Vista and above. -->
+    <Package Id="*" InstallerVersion="400" Compressed="yes" InstallPrivileges="elevated" InstallScope="perMachine"
+             Description="$(var.ProductName)"  Manufacturer="$(var.ManufacturerName)" />
+
+    <?include Conditions.wxi ?>
+
+    <MajorUpgrade Schedule="afterInstallValidate"
+                  DowngradeErrorMessage="A later version of $(var.ProductName) is already installed. Setup will now exit." />
+
+      <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+    <UIRef Id="WixUI_Minimal" />    
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.LicensePath1_1_1)" />
+    <!--<WixVariable Id="WixUIBannerBmp" Value="Resources\Banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="Resources\Dialog.bmp" />-->    
+    
+    <Icon Id="mainIcon" SourceFile="$(var.IconPath1_1_1)"/>
+    <Property Id="ARPPRODUCTICON" Value="mainIcon" />
+    
+    <Property Id="ARPCOMMENTS" Value="&#xA9; $(var.ManufacturerName)" />
+    <Property Id="ARPURLINFOABOUT" Value="$(var.WebSite)"/>
+    <Property Id="ARPHELPLINK" Value="$(var.WebSite)" />
+    
+    <!-- <Property Id="ALLUSERS" Value="1" /> This property will be set by the InstallScope attribute of the Package tag. -->
+
+    <Feature Id="ProductFeature" Title="Setup" Level="1">
+      <ComponentGroupRef Id="cmpgr_Binaries" />
+      <ComponentGroupRef Id="cmpgr_RedistSqlCe" />
+      <ComponentGroupRef Id="cmpgr_RedistVC" />
+      <ComponentGroupRef Id="cmpgr_Shortcuts" />
+      <ComponentGroupRef Id="cmpgr_EventSource" />
+      <ComponentGroupRef Id="cmpgr_RemoveDirs" />
+    </Feature>
+
+    <InstallExecuteSequence>
+      <Custom Action="act_SetRootDataDir" Before="ValidateProductID" >NOT UPGRADINGPRODUCTCODE AND REMOVE="ALL"</Custom>
+      <Custom Action="WixCloseApplications" Before="CostInitialize"/>
+      <Custom Action="act_DeleteHttpReservation_Cmd" Before="act_DeleteHttpReservation"/>
+      <Custom Action="act_DeleteHttpReservation" Before="act_AddHttpReservation"/>
+      <Custom Action="act_AddHttpReservation_Cmd" Before="act_AddHttpReservation"/>
+      <Custom Action="act_AddHttpReservation" Before="InstallFinalize">NOT Installed OR REINSTALLMODE</Custom>
+      <Custom Action="act_LaunchMainExe" After="InstallFinalize"/>
+    </InstallExecuteSequence>
+
+  </Product>
+</Wix>

@@ -1,0 +1,16 @@
+HKCR
+{
+	NoRemove CLSID
+	{
+		ForceRemove {CE574366-081D-4481-8761-81D814328AA8} = s 'Media Curator Helper'
+		{
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{814DBEE1-E0C7-49E7-871C-ADA16B0C5694}'
+			Version = s '1.0'
+		}
+	}
+}

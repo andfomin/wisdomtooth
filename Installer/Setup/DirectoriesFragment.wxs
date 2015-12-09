@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" >
+
+  <?include Variables.wxi ?>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="dir_RootProg" Name="$(var.ManufacturerShortName)">
+          <Directory Id="INSTALLDIR" Name="$(var.ProductName)">
+            <!--<Directory Id="dir_amd64" Name="amd64">
+              <Directory Id="dir_amd64vc90" Name="Microsoft.VC90.CRT"/>
+            </Directory>-->
+            <Directory Id="dir_x86" Name="x86">
+              <Directory Id="dir_x86vc90" Name="Microsoft.VC90.CRT"/>
+            </Directory>
+            <Directory Id="dir_IEHelper" Name="IE Helper" />
+            <!-- In the case of DEBUG or INTERNAL build, IEHelper expects its logging directory to be created manually. C:\Users\_UserName_\AppData\LocalLow\MediaCurator -->
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="dir_Shortcuts" Name="$(var.ProductName)" />
+      </Directory>
+
+      <Directory Id="CommonAppDataFolder">
+        <!-- The path "Dignicom\Media Curator" is hard-coded in MediaCurator.Common.CommonSettings.RootDataDir() -->
+        <Directory Id="dir_RootDataDir" Name="$(var.ManufacturerShortName)">
+          <!--<Directory Id="dir_Data" Name="$(var.ProductName)" />-->
+        </Directory>
+      </Directory>
+
+      <!-- We need to declare the system foolder in advance to refer to it later when calling netsh.exe in a CustomAction. -->
+      <Directory Id="SystemFolder" />
+
+    </Directory>
+
+    <DirectoryRef Id="dir_RootProg">
+      <Component Id="cmp_RemoveRootProgDir" Guid="{A0CA8BF8-7FD4-499F-B438-4671FC7F793D}" KeyPath="yes" >
+        <!--<RemoveFile Id="PurgeProgDir" Name="*" On="uninstall" />-->
+        <RemoveFolder Id="RemoveRootProgDir" On="uninstall" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="dir_Shortcuts">
+      <Component Id="cmp_RemoveShortcutsDir" Guid="{DA4E07B7-1347-4003-8A1F-74B14B318AF5}" >
+        <RemoveFolder Id="RemoveShortcutsDir" On="uninstall" />
+        <!-- A dummy entry. Needed for declaring KeyPath to remove folder on uninstall. Without it light would complain about ICE38 error. This is a workaround -->
+        <RegistryValue KeyPath="yes" Root="HKMU" Key="Software\$(var.ManufacturerShortName)\$(var.ProductName)"
+                       Name="Installed" Type="integer" Value="1" Action="write" />
+      </Component>
+    </DirectoryRef>
+
+    <Property Id="REMOVEROOTDATADIR" Secure="yes" />
+
+    <DirectoryRef Id="dir_RootDataDir">
+      <Component Id="cmp_RemoveRootDataDir" Guid="{4290F709-3F61-4646-A9AB-683709F4A2FC}" KeyPath="yes">
+        <util:RemoveFolderEx On="uninstall" Property="REMOVEROOTDATADIR" />
+      </Component>
+    </DirectoryRef>
+
+    <!--<DirectoryRef Id="dir_Data">
+      <Component Id="cmp_RemoveDataDir" Guid="{E0FF5D4E-57B2-4BB0-8432-2FEEC687D4DB}" Transitive="yes" >
+        <RemoveFile Id="PurgeDataDir" Name="*" On="uninstall" />
+        <RemoveFolder Id="RemoveDataDir" On="uninstall" />
+        --><!--<Condition>REMOVE="ALL" AND NOT UPGRADINGPRODUCTCODE</Condition>--><!--
+        --><!-- A dummy entry. Needed for declaring KeyPath to remove folder on uninstall. Without it light would complain about ICE38 error. This is a workaround --><!--
+        <RegistryValue KeyPath="yes" Root="HKMU" Key="Software\$(var.ManufacturerShortName)\$(var.ProductName)"
+                       Name="Installed" Type="integer" Value="1" Action="write" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="dir_RootData">
+      <Component Id="cmp_RemoveRootDataDir" Guid="{E356E2C8-7E51-42F8-A615-47150235AF7A}" Transitive="yes" >
+        <RemoveFile Id="PurgeRootDataDir" Name="*" On="uninstall" />
+        <RemoveFolder Id="RemoveRootDataDir" On="uninstall" />
+        --><!--<Condition>REMOVE="ALL" AND NOT UPGRADINGPRODUCTCODE</Condition>--><!--
+        --><!-- A dummy entry. Needed for declaring KeyPath to remove folder on uninstall. Without it light would complain about ICE38 error. This is a workaround --><!--
+        <RegistryValue KeyPath="yes" Root="HKMU" Key="Software\$(var.ManufacturerShortName)\$(var.ProductName)"
+                       Name="Installed" Type="integer" Value="1" Action="write" />
+      </Component>
+    </DirectoryRef>-->
+
+    <!--<DirectoryRef Id="INSTALLDIR">
+      <Component Id="cmp_BinPermissions" Guid="{E60D06B2-E9BD-4DCB-BFAB-628FFA5B4421}" KeyPath="yes">
+        <CreateFolder>
+          <util:PermissionEx User="Everyone" GenericExecute="yes" GenericRead="yes" />
+        </CreateFolder>
+      </Component>
+    </DirectoryRef>-->
+
+    <!--<DirectoryRef Id="dir_IEHelper">
+      <Component Id="cmp_IEHelperPermissions" Guid="{8649494E-AF04-4362-99B0-69ADA0434DAD}" KeyPath="yes">
+        <CreateFolder>
+          <util:PermissionEx User="Everyone" GenericExecute="yes" GenericRead="yes" />
+        </CreateFolder>
+      </Component>
+    </DirectoryRef>-->
+
+    <ComponentGroup Id="cmpgr_RemoveDirs">
+      <ComponentRef Id="cmp_RemoveRootProgDir" />
+      <ComponentRef Id="cmp_RemoveShortcutsDir" />
+      <ComponentRef Id="cmp_RemoveRootDataDir" />
+    </ComponentGroup>
+
+    <!--<ComponentGroup Id="cmpgr_Permissions">
+      <ComponentRef Id="cmp_BinPermissions" />
+      <ComponentRef Id="cmp_IEHelperPermissions" />
+    </ComponentGroup>-->
+
+  </Fragment>
+</Wix>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Bundle Name="SetupBootstrapper" Version="1.0.0.0" Manufacturer="Microsoft" UpgradeCode="273c2efe-d492-43a1-bf17-b66ceba0ca33">
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.HyperlinkLicense" />
+    <WixVariable Id="WixStdbaLicenseUrl" Value="http://www.fomin-family.com/ex01.html" />
+    <WixVariable Id="WixStdbaLogo" Value="..\..\Assets\MediaCurator.ico" />
+
+    <Chain>
+      <!-- TODO: Define the list of chained packages. -->
+      <!-- <MsiPackage SourceFile="path\to\your.msi" /> -->
+      <MsiPackage Id="MediaCuratorMsi" DownloadUrl="http://www.fomin-family.com/MediaCurator.msi"
+                  SourceFile="C:\Users\Andrey\Documents\Bon Voyage\WisdomTooth\Main\Installer\Setup\bin\Debug\MediaCurator.msi"
+                  Vital="yes" ForcePerMachine="yes" SuppressSignatureVerification="yes" Compressed="no" >
+        <MsiProperty Name="ARPSYSTEMCOMPONENT" Value="1"/>
+      </MsiPackage>
+
+    </Chain>
+  </Bundle>
+</Wix>

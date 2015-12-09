@@ -1,0 +1,34 @@
+----------------------------------------------------------------
+When to Delay Sign Assemblies http://www.c-sharpcorner.com/UploadFile/vandita/delaysignassemblies08022006120501PM/delaysignassemblies.aspx
+AssemblyKeyFileAttribute is depricated.
+
+If you use delay signing during development with Visual Studio on a 64-bit computer, and you compile an assembly for Any CPU, you might have to apply the -Vr option twice. See http://msdn.microsoft.com/en-us/library/t07a3dye.aspx
+On 64-bit computers, run both the 32-bit version of Sn.exe by using the Visual Studio Command Prompt and the 64-bit version by using the Visual Studio x64 Win64 Command Prompt.
+
+Public key token is 25b0e82e25de8c5d 
+sn.exe -Vr *,25b0e82e25de8c5d
+Restart Visual Studio after disabling validation.
+
+To include the public key file as a link:
+1. Open project Proplerties, the Signing tab. Mark "Sign the assembly" and "Delay sign only". 
+Do not choose a key file to avoid copying its duplicate into the project directory. Close the dialog.
+2. Open the project's file in a text editor. Add reference to the key file as a relative path.
+So the entire section looks as the following
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\WisdomToothPublicKeyOnly.pk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>true</DelaySign>
+  </PropertyGroup>
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
